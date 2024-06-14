@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDVI Change Detection</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #4682b4;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* width: 40%; */
+        }
+
+        label {
+            margin-top: 10px;
+            color: #4682b4;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        label>span {
+            margin-right: 10px;
+            width: 120px;
+            /* Adjust as needed */
+            display: inline-block;
+        }
+
+        input[type="file"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"]:focus {
+            border-color: #4682b4;
+        }
+
+        .clear-con {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .clear-con button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4682b4;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .clear-con button:hover {
+            background-color: #5a9bd4;
+        }
+
+        .images-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .images-container div {
+            flex: 1;
+            text-align: center;
+            margin: 0 10px;
+            /* Adjust margins as needed */
+        }
+
+        .images-container div img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #4682b4;
+            border-radius: 8px;
+        }
+
+        .images-container h2 {
+            color: #4682b4;
+        }
+
+        .image-year {
+            margin-top: 10px;
+            color: #4682b4;
+            font-weight: bold;
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4682b4;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #5a9bd4;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Upload NDVI Images</h1>
+    <form method="post" enctype="multipart/form-data">
+        <label for="b4_2014">
+            <span>B4 Year-1:</span>
+            <input type="file" name="b4_2014" id="b4_2014">
+        </label>
+        <label for="b5_2014">
+            <span>B5 Year-1:</span>
+            <input type="file" name="b5_2014" id="b5_2014">
+        </label>
+        <label for="b4_2019">
+            <span>B4 Year-2:</span>
+            <input type="file" name="b4_2019" id="b4_2019">
+        </label>
+        <label for="b5_2019">
+            <span>B5 Year-2:</span>
+            <input type="file" name="b5_2019" id="b5_2019">
+        </label>
+        <div class="clear-con">
+            <button type="submit">Submit</button>
+            <form method="POST" action="{{ url_for('clear_files') }}">
+                <button type="submit">Clear Files</button>
+            </form>
+        </div>
+    </form>
+
+    {% if ndvi_2014_png and ndvi_2019_png %}
+    <div class="images-container">
+        <div>
+            <span class="image-year">Year: {{ ndvi_2014_year }}</span>
+            <img src="{{ ndvi_2014_png }}" alt="NDVI 2014">
+        </div>
+        <div>
+            <span class="image-year">Year: {{ ndvi_2019_year }}</span>
+            <img src="{{ ndvi_2019_png }}" alt="NDVI 2019">
+        </div>
+    </div>
+    <form action="{{ url_for('result') }}">
+        <button type="submit">Show Change Image</button>
+    </form>
+    {% endif %}
+</body>
+
+</html>

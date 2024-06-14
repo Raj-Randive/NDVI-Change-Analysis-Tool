@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDVI Change Detection Result</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        h1,
+        h2 {
+            margin-bottom: 20px;
+            color: #4682b4;
+        }
+
+        img {
+            max-width: 90%;
+            height: auto;
+            border: 2px solid #4682b4;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>NDVI Change Detection Result</h1>
+    <h2>NDVI Change</h2>
+    <img src="{{ ndvi_change_png }}" alt="NDVI Change">
+</body>
+
+</html>
