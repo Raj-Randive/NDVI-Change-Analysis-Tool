@@ -97,7 +97,7 @@ plotNDVI(path_NDVI_2014,extentArray,0,'YlGn')
 
 # ********************************************************************************* PLOT 2
 plotNDVI(path_NDVI_2019,extentArray,0,'YlGn')
-
+5
 ndviChange = ndvi2019-ndvi2014
 ndviChange = np.where((ndvi2014>-999) & (ndvi2019>-999),ndviChange,-999)
 ndviChange
