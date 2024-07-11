@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +30,6 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* width: 40%; */
         }
 
         label {
@@ -45,7 +43,6 @@
         label>span {
             margin-right: 10px;
             width: 120px;
-            /* Adjust as needed */
             display: inline-block;
         }
 
@@ -98,7 +95,6 @@
             flex: 1;
             text-align: center;
             margin: 0 10px;
-            /* Adjust margins as needed */
         }
 
         .images-container div img {
@@ -119,7 +115,7 @@
         }
 
         button[type="submit"] {
-            margin-top: 20px;
+            margin-top: 10px;
             padding: 10px 20px;
             background-color: #4682b4;
             color: #fff;
@@ -135,25 +131,16 @@
         }
     </style>
 </head>
-
 <body>
     <h1>Upload NDVI Images</h1>
     <form method="post" enctype="multipart/form-data">
-        <label for="b4_2014">
-            <span>B4 Year-1:</span>
-            <input type="file" name="b4_2014" id="b4_2014">
+        <label for="year1">
+            <span>Year-1:</span>
+            <input type="file" name="year1" id="year1">
         </label>
-        <label for="b5_2014">
-            <span>B5 Year-1:</span>
-            <input type="file" name="b5_2014" id="b5_2014">
-        </label>
-        <label for="b4_2019">
-            <span>B4 Year-2:</span>
-            <input type="file" name="b4_2019" id="b4_2019">
-        </label>
-        <label for="b5_2019">
-            <span>B5 Year-2:</span>
-            <input type="file" name="b5_2019" id="b5_2019">
+        <label for="year2">
+            <span>Year-2:</span>
+            <input type="file" name="year2" id="year2">
         </label>
         <div class="clear-con">
             <button type="submit">Submit</button>
@@ -165,19 +152,18 @@
 
     {% if ndvi_2014_png and ndvi_2019_png %}
     <div class="images-container">
-        <div>
+        <!-- <div>
             <span class="image-year">Year: {{ ndvi_2014_year }}</span>
-            <img src="{{ ndvi_2014_png }}" alt="NDVI 2014">
+            <img src="{{ ndvi_2014_png }}" alt="NDVI 1">
         </div>
         <div>
             <span class="image-year">Year: {{ ndvi_2019_year }}</span>
-            <img src="{{ ndvi_2019_png }}" alt="NDVI 2019">
-        </div>
+            <img src="{{ ndvi_2019_png }}" alt="NDVI 2">
+        </div> -->
     </div>
+    {% endif %}
     <form action="{{ url_for('result') }}">
         <button type="submit">Show Change Image</button>
     </form>
-    {% endif %}
 </body>
-
 </html>
